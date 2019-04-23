@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- 定义方言-->
+        <property name="dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+
+        <mapping class="cn.lc.pojo.Action"/>
+
+        <mapping class="cn.lc.pojo.Groups"/>
+
+        <mapping class="cn.lc.pojo.Role"/>
+
+        <mapping class="cn.lc.pojo.User"/>
+        <mapping class="cn.lc.pojo.Doctype"/>
+
+        <mapping class="cn.lc.pojo.Document"/>
+        <mapping class="cn.lc.pojo.Notice"/>
+        <mapping class="cn.lc.pojo.Task"/>
+        <mapping class="cn.lc.pojo.Tasktype"/>
+        <mapping class="cn.lc.pojo.Project"/>
+
+    </session-factory>
+</hibernate-configuration>

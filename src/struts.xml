@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+        "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+    <package name="root" namespace="/" extends="struts-default">
+        <interceptors>
+            <interceptor name="pages" class="cn.lc.interceptor.PagesInterceptor"></interceptor>
+            <interceptor name="admin" class="cn.lc.interceptor.AdminInterceptor"></interceptor>
+            <interceptor name="manager" class="cn.lc.interceptor.ManagerInterceptor"></interceptor>
+            <interceptor name="emp" class="cn.lc.interceptor.EmpInterceptor"></interceptor>
+            <interceptor name="validate" class="cn.lc.util.interceptor.ValidateInterceptor"></interceptor>
+            <interceptor name="encoding" class="cn.lc.util.interceptor.EncodingInterceptor"></interceptor>
+            <!-- 增加登录检查的拦截器（管理员标记）-->
+            <interceptor-stack name="adminStack">
+                <interceptor-ref name="pages"></interceptor-ref>
+                <interceptor-ref name="encoding"></interceptor-ref>
+                <interceptor-ref name="admin"></interceptor-ref>
+                <interceptor-ref name="validate"></interceptor-ref>
+                <interceptor-ref name="fileUpload">
+                    <param name="maximumSize">3145728</param>
+                    <param name="allowedTypes">image/bmp,image/jpg,image/jpeg,image/gif,
+                        image/png,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+                        application/vnd.ms-excel,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                        text/plain,application/x-rar-compressed,application/zip</param>
+                </interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+            <!-- 增加登录检查的拦截器（emp标记）-->
+            <interceptor-stack name="empStack">
+                <interceptor-ref name="pages"></interceptor-ref>
+                <interceptor-ref name="encoding"></interceptor-ref>
+                <interceptor-ref name="emp"></interceptor-ref>
+                <interceptor-ref name="validate"></interceptor-ref>
+                <interceptor-ref name="fileUpload">
+                    <param name="maximumSize">3145728</param>
+                    <param name="allowedTypes">image/bmp,image/jpg,image/jpeg,image/gif,
+                        image/png,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+                        application/vnd.ms-excel,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                        text/plain,application/x-rar-compressed,application/zip</param>
+                </interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+            <!-- 增加登录检查的拦截器（manager标记）-->
+            <interceptor-stack name="managerStack">
+                <interceptor-ref name="pages"></interceptor-ref>
+                <interceptor-ref name="encoding"></interceptor-ref>
+                <interceptor-ref name="manager"></interceptor-ref>
+                <interceptor-ref name="validate"></interceptor-ref>
+                <interceptor-ref name="fileUpload">
+                    <param name="maximumSize">3145728</param>
+                    <param name="allowedTypes">image/bmp,image/jpg,image/jpeg,image/gif,
+                        image/png,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+                        application/vnd.ms-excel,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                        text/plain,application/x-rar-compressed,application/zip</param>
+                </interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="validate"></interceptor-ref>
+                <interceptor-ref name="encoding"></interceptor-ref>
+                <interceptor-ref name="fileUpload">
+                    <param name="maximumSize">3145728</param>
+                    <param name="allowedTypes">image/bmp,image/jpg,image/jpeg,image/gif,
+                        image/png,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+                        application/vnd.ms-excel,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                        text/plain,application/x-rar-compressed,application/zip</param>
+                </interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <global-results>
+            <result name="forward.page">forward.jsp</result>
+            <result name="login.page">login.jsp</result>
+            <result name="inpput">error.jsp</result>
+        </global-results>
+
+    </package>
+
+</struts>
