@@ -3,7 +3,7 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-    String insertUrl = basePath+"DocumentActionAdmin!insert.action";
+    String insertUrl = basePath+"DocumentActionManager!insert.action";
 %>
 <html>
 
@@ -24,7 +24,7 @@
 <div class="container">
     <div id="headDiv" class="row">
         <div class="col-md-12 col-xs-12">		<!-- 定义导航条 -->
-            <jsp:include page="/pages/include_menu_emp.jsp"></jsp:include>
+            <jsp:include page="/pages/include_menu_manager.jsp"></jsp:include>
         </div>
     </div>
     <div class="row">

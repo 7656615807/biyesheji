@@ -249,4 +249,6 @@ public class User implements java.io.Serializable {
 	public void setTasksForCreator(Set<Task> tasksForCreator) {
 		this.tasksForCreator = tasksForCreator;
 	}
+
+
 }

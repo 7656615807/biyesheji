@@ -191,7 +191,20 @@ public abstract class AbstractAction extends ActionSupport {
         this.getRequest().setAttribute("msg",this.getMsg(msgKey));
         this.getRequest().setAttribute("url",this.getUrl(urlKey));
     }
-
+    public void setMsgAndUrl(String msgKey,String urlKey, Object...arg){
+        this.getRequest().setAttribute("msg",this.getMsg(msgKey));
+        StringBuffer str = new StringBuffer(this.getUrl(urlKey));
+        for (int x = 0; x < arg.length; x += 2){
+            if (arg.length < (x+1))break;
+            if (x == 0){
+                str.append("?");
+            }else {
+                str.append("&");
+            }
+            str.append(arg[x]).append("=").append(arg[x+1]);
+        }
+        this.getRequest().setAttribute("url", str);
+    }
     /**
      * 文件的保存操作
      * @param filePath  文件的路径

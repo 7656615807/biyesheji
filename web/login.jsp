@@ -37,9 +37,8 @@
                 <div class="col-md-4" id="managerpasswordSpan">${fieldErrors['user.password'][0]}</div>
             </div>
             <div class="form-group">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-5 col-md-offset-5">
                     <button type="submit" class="btn btn-md btn-primary">登录</button>
-                    <button type="reset" class="btn btn-md btn-primary">注册</button>
                 </div>
             </div>
         </fieldset>

@@ -51,7 +51,7 @@ public class DocumentServiceManagerImpl implements IDocumentServiceManager {
     @Override
     public boolean update(Document vo,String userid) throws Exception {
         Document pojo = documentDao.findById(vo.getDid());
-        if (pojo.getUser().getUserid() != userid){
+        if (!userid.equals(pojo.getUser().getUserid())){
             return false;
         }
         return documentDao.doUpdute(vo);

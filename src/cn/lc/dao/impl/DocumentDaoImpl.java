@@ -66,7 +66,7 @@ public class DocumentDaoImpl extends AbstractDAOImpl implements IDocumentDao {
         Criteria criteria = this.getCriteria(Document.class);
         criteria.add(Restrictions.and(
                 Restrictions.like(column,"%"+keyWord+ "%"),
-                Restrictions.eq("userid",userid)));
+                Restrictions.eq("user.userid",userid)));
         criteria.setFirstResult((currentPage - 1) * lineSize);
         criteria.setMaxResults(lineSize);
         return criteria.list();
@@ -74,7 +74,7 @@ public class DocumentDaoImpl extends AbstractDAOImpl implements IDocumentDao {
 
     @Override
     public Integer getAllCountByUser(String userid, String column, String keyWord) {
-        String hql = "select count(*) From Document  as p where p."+ column + " LIKE ? and userid=?" ;
+        String hql = "select count(*) From Document  as p where p."+ column + " LIKE ? and user.userid=?" ;
         Query query = this.getQuery(hql);
         query.setParameter(0,"%" + keyWord +"%");
         query.setParameter(1,userid);
@@ -89,7 +89,7 @@ public class DocumentDaoImpl extends AbstractDAOImpl implements IDocumentDao {
             buffer.append(o).append(",");
         }
         buffer.delete(buffer.length() -1 ,buffer.length()).append(")");
-        buffer.append(" and userid = "+userid);
+        buffer.append(" and uerid = '"+userid +"'");
         Query query = getQuery(buffer.toString());
         return query.executeUpdate() > 0;
     }

@@ -13,7 +13,6 @@
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <script src="js/new-list.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -21,7 +20,7 @@
     <div class="container">
         <div id="headDiv" class="row">
             <div class="col-md-12 col-xs-12">		<!-- 定义导航条 -->
-                <jsp:include page="/pages/include_menu_emp.jsp"></jsp:include>
+                <jsp:include page="/pages/include_menu_admin.jsp"></jsp:include>
             </div>
         </div>
         <div id="contenDiv" class="row">
@@ -33,7 +32,7 @@
                     <div class="panel-body">
                         <table class="table table-bordered table-hover table-striped" id="newsTable">
                             <tr>
-                                <td colspan="3">欢迎<strong>${admin.name}</strong>光临</td>
+                                <td colspan="3"><h4>欢迎<strong>${admin.name}</strong>光临</h4></td>
                             </tr>
                             <tr>
                                 <td rowspan="4" style="width: 160px;">

@@ -29,6 +29,7 @@ import java.util.Set;
 @ParentPackage("root")
 @Namespace(value="/")
 @Results(value = {@Result(name = "document.list",location = "/pages/jsp/manager/manager_document_list.jsp"),
+        @Result(name = "document.listByUser",location = "/pages/jsp/manager/manager_document_listByUser.jsp"),
         @Result(name = "document.insert",location = "/pages/jsp/manager/manager_document_insert.jsp"),
         @Result(name = "document.update",location = "/pages/jsp/manager/manager_document_update.jsp"),
         @Result(name = "updateVF",location = "/DocumentActionManager!list.action",type = "redirectAction"),
@@ -125,7 +126,7 @@ public class DocumentActionManager extends AbstractAction {
                 files.add(temp[1]);
             }
         }
-        User manager = (User) super.getSession().getAttribute("manger");
+        User manager = (User) super.getSession().getAttribute("manager");
         if (manager == null){
             return "";
         }
@@ -177,7 +178,7 @@ public class DocumentActionManager extends AbstractAction {
         }else {
             document.setFile(this.oldFile);
         }
-        User manager = (User) super.getSession().getAttribute("manger");
+        User manager = (User) super.getSession().getAttribute("manager");
         if (manager == null){
             return "";
         }
@@ -187,17 +188,17 @@ public class DocumentActionManager extends AbstractAction {
                 String filePath = super.getApplication().getRealPath("/upload/document/") + document.getFile();
                 if (this.file != null){
                     if (super.saveSingleFile(filePath, this.file)){
-                        super.setMsgAndUrl("insert.success.msg", "manager_document.list.action");
+                        super.setMsgAndUrl("update.success.msg", "manager_document.list.action");
                     }else {
-                        super.setMsgAndUrl("insert.failure.msg", "manager_document.list.action");
+                        super.setMsgAndUrl("update.failure.msg", "manager_document.list.action");
                     }
                 }
-                super.setMsgAndUrl("insert.success.msg", "manager_document.list.action");
+                super.setMsgAndUrl("update.success.msg", "manager_document.list.action");
             }else {
-                super.setMsgAndUrl("insert.failure.msg","manager_document.list.action");
+                super.setMsgAndUrl("update.failure.msg","manager_document.list.action");
             }
         }catch (Exception e){
-            super.setMsgAndUrl("insert.failure.msg","manager_document.list.action");
+            super.setMsgAndUrl("update.failure.msg","manager_document.list.action");
             e.printStackTrace();
         }
         return "forward.page";
@@ -213,6 +214,22 @@ public class DocumentActionManager extends AbstractAction {
             e.printStackTrace();
         }
         return "document.list";
+    }
+
+    public String listByUser(){
+        User manager = (User) super.getSession().getAttribute("manager");
+        if (manager == null){
+            return "";
+        }
+        try{
+            Map<String, Object> map = this.documentService.listByUser(manager.getUserid(),super.getCp(),super.getLs(),super.getCol(),super.getKw());
+            super.handleSplit(map.get("documentCount"),"manager.role.split.url",null,null);
+            super.getRequest().setAttribute("all",map.get("allDocuments"));
+            super.getRequest().setAttribute("allDoctypes",map.get("allDoctypes"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "document.listByUser";
     }
     public void show(){
         try{

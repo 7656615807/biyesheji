@@ -133,7 +133,7 @@ public class NoticeActionAdmin extends AbstractAction {
     public String list(){
         try{
             Map<String, Object> map = this.noticeServiceAdmin.list(super.getCp(),super.getLs(),super.getCol(),super.getKw());
-            super.handleSplit(map.get("noticeCount"),"admin.role.split.url",null,null);
+            super.handleSplit(map.get("noticeCount"),"notice.list.action",null,null);
             super.getRequest().setAttribute("all",map.get("allNotices"));
         }catch (Exception e){
             e.printStackTrace();
@@ -148,7 +148,7 @@ public class NoticeActionAdmin extends AbstractAction {
 
     @Override
     public String getColumnData() {
-        return "公告标题:title|";
+        return "公告标题:title";
     }
 
     @Override

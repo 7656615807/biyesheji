@@ -122,7 +122,7 @@ public class ProjectActionAdmin extends AbstractAction {
     public String list(){
         try{
             Map<String, Object> map = this.projectServiceAdmin.list(super.getCp(),super.getLs(),super.getCol(),super.getKw());
-            super.handleSplit(map.get("projectCount"),"admin.role.split.url",null,null);
+            super.handleSplit(map.get("projectCount"),"project.list.action",null,null);
             super.getRequest().setAttribute("all",map.get("allProjects"));
         }catch (Exception e){
             e.printStackTrace();
@@ -137,7 +137,7 @@ public class ProjectActionAdmin extends AbstractAction {
 
     @Override
     public String getColumnData() {
-        return "title";
+        return "项目标题:title";
     }
 
     @Override

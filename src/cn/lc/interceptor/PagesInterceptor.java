@@ -20,7 +20,7 @@ public class PagesInterceptor extends AbstractInterceptor {
         ServletActionContext.getRequest().setAttribute("msg","你还未登录，请先登录！");
         ServletActionContext.getRequest().setAttribute("url","/login.jsp");
         if (map.get("admin") == null){ //现在没有admin的属性
-                if (map.get("admin") == null ){
+                if (map.get("manager") == null ){
                     if (map.get("emp") == null ){
                         return "forward.page";
                     }else {

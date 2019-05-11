@@ -1,14 +1,7 @@
 package cn.lc.pojo;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Task entity. @author MyEclipse Persistence Tools
@@ -16,7 +9,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "task", catalog = "office")
 
-public class Task implements java.io.Serializable {
+public class Task implements java.io.Serializable,Cloneable{
 
 	// Fields
 
@@ -83,7 +76,7 @@ public class Task implements java.io.Serializable {
 		this.tid = tid;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "proid")
 
 	public Project getProject() {
@@ -94,7 +87,7 @@ public class Task implements java.io.Serializable {
 		this.project = project;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "receiver")
 
 	public User getUserByReceiver() {
@@ -105,7 +98,7 @@ public class Task implements java.io.Serializable {
 		this.userByReceiver = userByReceiver;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ttid")
 
 	public Tasktype getTasktype() {
@@ -116,7 +109,7 @@ public class Task implements java.io.Serializable {
 		this.tasktype = tasktype;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "canceler")
 
 	public User getUserByCanceler() {
@@ -127,7 +120,7 @@ public class Task implements java.io.Serializable {
 		this.userByCanceler = userByCanceler;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "creator")
 
 	public User getUserByCreator() {
@@ -149,7 +142,7 @@ public class Task implements java.io.Serializable {
 	}
 
 	@Column(name = "createdate", length = 19)
-
+	@Temporal(TemporalType.DATE)
 	public Date getCreatedate() {
 		return this.createdate;
 	}
@@ -159,7 +152,7 @@ public class Task implements java.io.Serializable {
 	}
 
 	@Column(name = "finishdate", length = 19)
-
+	@Temporal(TemporalType.DATE)
 	public Date getFinishdate() {
 		return this.finishdate;
 	}
@@ -179,7 +172,7 @@ public class Task implements java.io.Serializable {
 	}
 
 	@Column(name = "lastupdatedate", length = 19)
-
+	@Temporal(TemporalType.DATE)
 	public Date getLastupdatedate() {
 		return this.lastupdatedate;
 	}
@@ -249,7 +242,7 @@ public class Task implements java.io.Serializable {
 	}
 
 	@Column(name = "expiredate", length = 19)
-
+	@Temporal(TemporalType.DATE)
 	public Date getExpiredate() {
 		return this.expiredate;
 	}
@@ -258,4 +251,8 @@ public class Task implements java.io.Serializable {
 		this.expiredate = expiredate;
 	}
 
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 }

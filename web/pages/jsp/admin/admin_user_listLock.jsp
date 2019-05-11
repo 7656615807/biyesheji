@@ -20,7 +20,7 @@
 <div class="container">
     <div id="headDiv" class="row">
         <div class="col-md-12 col-xs-12">		<!-- 定义导航条 -->
-            <jsp:include page="/pages/include_menu_emp.jsp"></jsp:include>
+            <jsp:include page="/pages/include_menu_admin.jsp"></jsp:include>
         </div>
     </div>
     <div class="row">
@@ -30,6 +30,7 @@
                     <strong>员工列表</strong>
                 </div>
                 <div class="panel-body">
+                    <jsp:include page="/pages/search.jsp"></jsp:include>
                     <table class="table table-bordered table-hover table-striped"  id="newsTable">
                         <tr>
                             <td class="text-center"><input type="checkbox" id="selall" name="selall"> </td>
@@ -81,30 +82,32 @@
                     <a class="btn btn-success"href="/pages/jsp/admin/admin_user_insert.jsp"> 增加员工</a>
                     <a class="btn btn-success"href="/UserActionAdmin!listActive.action"> 活跃员工列表</a>
                     <div id="pageDiv" class="text-right">
-                        <ul class="pagination pagination-sm" id="pagecontrol">
-                            <c:if test="${currentPage == 1}">
-                                <li><a style='cursor:pointer;'>首页</a></li>
-                                <li><a style='cursor:pointer;'>上一页</a></li>
-                            </c:if>
+                        <c:if test="${allRecorders != 0}">
+                            <ul class="pagination pagination-sm" id="pagecontrol">
+                                <c:if test="${currentPage == 1}">
+                                    <li><a style='cursor:pointer;'>首页</a></li>
+                                    <li><a style='cursor:pointer;'>上一页</a></li>
+                                </c:if>
 
-                            <c:if test="${currentPage != 1}">
-                                <li><a style='cursor:pointer;' href="UserActionAdmin!listActive.action?cp=1">首页</a></li>
-                                <li><a style='cursor:pointer;' href="UserActionAdmin!listActive.action?cp=${currentPage - 1}">上一页</a></li>
-                            </c:if>
+                                <c:if test="${currentPage != 1}">
+                                    <li><a style='cursor:pointer;' href="UserActionAdmin!listActive.action?cp=1&col=${column}&kw=${keyword}">首页</a></li>
+                                    <li><a style='cursor:pointer;' href="UserActionAdmin!listActive.action?cp=${currentPage - 1}&col=${column}&kw=${keyword}">上一页</a></li>
+                                </c:if>
 
-                            <c:if test="${currentPage == allRecorders}">
-                            <li><a style='cursor:pointer;' >下一页</a></li>
-                                <li><a style='cursor:pointer;' >尾页</a></li>
-                            </c:if>
+                                <c:if test="${currentPage == allRecorders}">
+                                    <li><a style='cursor:pointer;' >下一页</a></li>
+                                    <li><a style='cursor:pointer;' >尾页</a></li>
+                                </c:if>
 
-                            <c:if test="${currentPage != allRecorders}">
-                            <li><a style='cursor:pointer;'  href="UserActionAdmin!listActive.action?cp=${currentPage + 1}">下一页</a></li>
-                                <li><a style='cursor:pointer;'  href="UserActionAdmin!listActive.action?cp=${allRecorders}">尾页</a></li>
-                            </c:if>
-                            <p>
-                                当前第${currentPage}页       总共${allRecorders}页
-                            </p>
-                        </ul>
+                                <c:if test="${currentPage != allRecorders}">
+                                    <li><a style='cursor:pointer;'  href="UserActionAdmin!listActive.action?cp=${currentPage + 1}&col=${column}&kw=${keyword}">下一页</a></li>
+                                    <li><a style='cursor:pointer;'  href="UserActionAdmin!listActive.action?cp=${allRecorders}&col=${column}&kw=${keyword}">尾页</a></li>
+                                </c:if>
+                                <p>
+                                    当前第${currentPage}页       总共${allRecorders}页
+                                </p>
+                            </ul>
+                        </c:if>
                     </div>
 
                 </div>

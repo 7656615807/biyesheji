@@ -20,7 +20,7 @@
 <div class="container">
     <div id="headDiv" class="row">
         <div class="col-md-12 col-xs-12">		<!-- 定义导航条 -->
-            <jsp:include page="/pages/include_menu_emp.jsp"></jsp:include>
+            <jsp:include page="/pages/include_menu_admin.jsp"></jsp:include>
         </div>
     </div>
     <div class="row">

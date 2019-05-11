@@ -159,7 +159,7 @@ public class UserActionAdmin extends AbstractAction {
     public String listActive(){
         try{
             Map<String, Object> map = this.userServiceAdmin.list(0,super.getCp(),super.getLs(),super.getCol(),super.getKw());
-            super.handleSplit(map.get("allcounts"),"admin.role.split.url",null,null);
+            super.handleSplit(map.get("allcounts"),"user.listActive.action",null,null);
             super.getRequest().setAttribute("all",map.get("allAdmins"));
         }catch (Exception e){
             e.printStackTrace();
@@ -169,7 +169,7 @@ public class UserActionAdmin extends AbstractAction {
     public String listLock(){
         try{
             Map<String, Object> map = this.userServiceAdmin.list(1,super.getCp(),super.getLs(),super.getCol(),super.getKw());
-            super.handleSplit(map.get("allcounts"),"admin.role.split.url",null,null);
+            super.handleSplit(map.get("allcounts"),"user.listLock.action",null,null);
             super.getRequest().setAttribute("all",map.get("allAdmins"));
         }catch (Exception e){
             e.printStackTrace();
@@ -194,7 +194,7 @@ public class UserActionAdmin extends AbstractAction {
 
     @Override
     public String getColumnData() {
-        return "用户id:userid|真实id:name|电话号码:phone|email:email";
+        return "用户id:userid|姓名:name|电话号码:phone|email:email";
     }
 
     @Override

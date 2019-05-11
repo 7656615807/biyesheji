@@ -6,9 +6,9 @@
     </div>
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-            <li><a tabindex="-1" href="/pages/jsp/admin/admin_index.jsp"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
-            <c:if test="${admin != null}">
-                <c:forEach items="${admin.role.groupses}" var="gup">
+            <li><a tabindex="-1" href="/pages/jsp/emp/emp_index.jsp"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+            <c:if test="${emp != null}">
+                <c:forEach items="${emp.role.groupses}" var="gup">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">${gup.title}<span class="caret"></span> </a>
                         <ul class="dropdown-menu">
@@ -19,17 +19,15 @@
                     </li>
                 </c:forEach>
             </c:if>
-            <c:if test="${admin.level == 0}">
-                <li><a href="/AdminActionAdmin!insertPre.action">增加管理员</a> </li>
-            </c:if>
+
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="glyphicon glyphicon-user"></i>${admin.name}
+                <i class="glyphicon glyphicon-user"></i>${emp.name}
                 <span class="glyphicon glyphicon-chevron-down"></span> </a>
                 <ul class="dropdown-menu main-list">
-                    <li><a href="/pages/jsp/admin/admin_password_edit.jsp"><i class="glyphicon glyphicon-edit"></i>修改密码</a></li>
-                    <li><a href="/AdminUpdateAction!updatePre.action"><i class="glyphicon glyphicon-cd">个人资料</i></a></li>
+                    <li><a href="/pages/jsp/emp/emp_password_edit.jsp"><i class="glyphicon glyphicon-edit"></i>修改密码</a></li>
+                    <li><a href="/EmpUpdateAction!updatePre.action"><i class="glyphicon glyphicon-cd">个人资料</i></a></li>
                     <li class="divider"></li>
                     <li><a href="UserLogout!logout.action"><i class="glyphicon glyphicon-off"></i>注销</a></li>
                 </ul>

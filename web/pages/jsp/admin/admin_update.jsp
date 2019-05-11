@@ -24,7 +24,7 @@
 <div class="container">
     <div id="headDiv" class="row">
         <div class="col-md-12 col-xs-12">		<!-- 定义导航条 -->
-            <jsp:include page="/pages/include_menu_emp.jsp"></jsp:include>
+            <jsp:include page="/pages/include_menu_admin.jsp"></jsp:include>
         </div>
     </div>
     <div class="row">
@@ -54,7 +54,7 @@
                             <div class="form-group" id="phoneDiv">
                                 <label class="col-md-4 control-label" for="phone">联系电话:</label>
                                 <div class="col-md-4">
-                                    <input type="password" id="phone" name="user.phone" class="form-control" value="${user.phone}" autocomplete="off"></textarea>
+                                    <input type="text" id="phone" name="user.phone" class="form-control" value="${user.phone}" autocomplete="off"></textarea>
                                 </div>
                                 <div class="col-md-4" id="phoneSpan"></div>
                             </div>

@@ -1,7 +1,6 @@
 package cn.lc.dao;
 
 import cn.lc.pojo.UserNotice;
-import org.springframework.stereotype.Component;
 
 /**
  * @description:
@@ -22,7 +21,7 @@ public interface IUserNoticeDao {
      * 判断用户的月的记录是否已经存在
      * @param userid
      * @param snid
-     * @return
+     * @return true渡过
      * @throws Exception
      */
     boolean findByExists(String userid,Integer snid)throws Exception;

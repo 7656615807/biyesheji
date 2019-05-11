@@ -20,7 +20,7 @@ public class ValidateUtil {
 			String str [] =(String [])map.getValue();
 			System.out.println(map.getKey()+"="+Arrays.toString(str));
 		}
-*/		
+*/
 		boolean flag = false;
 		try {
 			//保存错误信息

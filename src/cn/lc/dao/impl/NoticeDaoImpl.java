@@ -3,11 +3,15 @@ package cn.lc.dao.impl;
 import cn.lc.dao.INoticeDao;
 import cn.lc.pojo.Notice;
 import cn.lc.util.dao.AbstractDAOImpl;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -25,6 +29,55 @@ public class NoticeDaoImpl extends AbstractDAOImpl implements INoticeDao {
         query.setParameter(0,level);
         query.setParameter(1,snid);
         return query.executeUpdate()>0;
+    }
+
+    @Override
+    public Map<Integer, Boolean> findUnread(String userid, Integer level) throws Exception {
+        String sql = "select snid from notice where " +
+                "level>=? and snid not in(select snid from user_notice where userid= ?)";
+        Query query = getSQLQuery(sql);
+        query.setParameter(0, level);
+        query.setParameter(1, userid);
+        List<Integer> unReadlist = query.list();
+        Map<Integer, Boolean> result = new HashMap<>();
+        for (Integer i : unReadlist){
+            result.put(i, false);
+        }
+        return result;
+    }
+
+    @Override
+    public Integer getAllCountUnread(String userid, Integer level) throws Exception {
+        return findUnread(userid, level).values().size();
+    }
+
+    @Override
+    public Notice findByIdAndLevel(Integer id, Integer level) throws Exception {
+        String hql = "From Notice where snid=? and level=?";
+        Query query = getQuery(hql);
+        query.setParameter(0, id);
+        query.setParameter(1, level);
+        return (Notice)query.uniqueResult();
+    }
+
+    @Override
+    public List<Notice> findAllbylevel(Integer currentPage, Integer lineSize, String column, String keyWord, int level) throws Exception {
+        Criteria criteria = this.getCriteria(Notice.class);
+        criteria.add(Restrictions.and(
+                Restrictions.like(column,"%"+keyWord+ "%"),
+                Restrictions.eq("level", level)));
+        criteria.setFirstResult((currentPage - 1) * lineSize);
+        criteria.setMaxResults(lineSize);
+        return criteria.list();
+    }
+
+    @Override
+    public Integer getCountBylevel(String column, String keyWord, int level) throws Exception {
+        String hql = "select count(*) From Notice as p where p.level=? and p."+ column + " LIKE ?" ;
+        Query query = this.getQuery(hql);
+        query.setParameter(0, level);
+        query.setParameter(1,"%" + keyWord +"%");
+        return ((Long) query.uniqueResult()).intValue();
     }
 
     @Override

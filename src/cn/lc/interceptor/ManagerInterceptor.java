@@ -19,7 +19,7 @@ public class ManagerInterceptor extends AbstractInterceptor {
         Map<String,Object> map = actionInvocation.getInvocationContext().getSession();
         ServletActionContext.getRequest().setAttribute("msg","您不具备操作权限，请重新登录！");
         ServletActionContext.getRequest().setAttribute("url","/login.jsp");
-        if (map.get("admin") == null){ //现在没有admin的属性
+        if (map.get("manager") == null){ //现在没有admin的属性
               return "forward.page";
         }else {
             return actionInvocation.invoke();

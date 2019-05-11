@@ -57,7 +57,7 @@ public class Document implements java.io.Serializable {
 		this.did = did;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "dtid")
 
 	public Doctype getDoctype() {

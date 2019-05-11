@@ -24,14 +24,14 @@
 <div class="container">
     <div id="headDiv" class="row">
         <div class="col-md-12 col-xs-12">		<!-- 定义导航条 -->
-            <jsp:include page="/pages/include_menu_emp.jsp"></jsp:include>
+            <jsp:include page="/pages/include_menu_admin.jsp"></jsp:include>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel panel-heading">
-                    <strong>添加新的文档信息</strong>
+                    <strong>添加新的项目信息</strong>
                 </div>
                 <div class="panel-body">
                     <form class="form-horizontal" action="<%=insertUrl%>" id="myform_document_insert" method="post">
